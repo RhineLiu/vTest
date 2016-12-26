@@ -1,3 +1,7 @@
+/**
+ * vTest v1.0 (https://github.com/RhineLiu/vTest)
+ * a test tool working on mobile device
+ */
 (function (factory) {
 	var export_name = 'vTest';
 	if (typeof define === 'function' && (define.amd || define.cmd)) {
@@ -7,12 +11,14 @@
 	}
 }(function () {
 	var vTest = {
+		id: '' + new Date().getTime() + Math.floor(Math.random() * 1e6),
 		data: [],
 		record: function (name, value) {
 			this.data.push({name: name, value: value, time: new Date().getTime()});
 		},
 		submit: function () {
 			var formdata = new FormData();
+			formdata.append('id', this.id);
 			formdata.append('data', JSON.stringify(this.data));
 
 			var url = '//nb.im20.com.cn/lyh/vTest.php';
